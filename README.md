@@ -34,6 +34,9 @@ Here is an outline of the main files and directories:
 
 ## Build
 
+C++ standard required: C++17
+you may need g++-11 or later for gemm_final which use std::experimental::simd.
+
 
 ```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release

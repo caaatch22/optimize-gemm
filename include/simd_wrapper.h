@@ -11,13 +11,12 @@
 #define SIMD_SIZE 16  // 512 / 32
 #define SIMD_VERSION "AVX512"
 
-// 检查 AVX2 支持
 #elif (defined(__AVX2__))
 #include <immintrin.h>
 
 #define SIMD_LOAD _mm256_load_ps
 #define SIMD_SET1 _mm256_set1_ps
-#define SIMD_FMADD _mm256_fmadd_ps  
+#define SIMD_FMADD _mm256_fmadd_ps
 #define SIMD_STORE _mm256_store_ps
 #define SIMD_SIZE 8
 #define SIMD_VERSION "AVX2"
@@ -31,7 +30,6 @@
 #define SIMD_STORE _mm256_store_ps
 #define SIMD_SIZE 8
 #define SIMD_VERSION "AVX"
-
 
 #elif defined(__ARM_NEON) || defined(__ARM_NEON__)
 #include <arm_neon.h>
