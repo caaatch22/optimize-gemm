@@ -59,4 +59,6 @@ if you don't specify version, than it will run all algorithms, the matrix size b
 
 ## Result:
 The following results shows the performance of different versions of GEMM with different matrix size(square matrix). The complex version is more slow when the matrix size is small, as it has more overhead of threading, copying to aligned memory, etc. 
-<img src="./assets/gemm_performance_4c_avx2.png" alt="result 1" width="50%"/><img src="./assets/gemm_performance_8c_avx512.png" alt="result 2" width="50%"/>
+
+![result 1](./assets/gemm_performance_4c_avx2.png)
+![result 2](./assets/gemm_performance_8c_avx512.png)
