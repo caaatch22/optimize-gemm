@@ -23,4 +23,4 @@ end_time = time.time()
 execution_time = end_time - start_time
 print(f'A: {m} x {k}, B: {k}, {n}')
 gflops = (2 * m * k * n) / (execution_time * 1e9)
-print(f"Matrix multiplication executed in {execution_time:.4f} seconds. GFlops: {gflops:.2f}")
+print(f"Matrix multiplication executed in {execution_time:.4f} seconds. GFlops: {gflops:.3f}")

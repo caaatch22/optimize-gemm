@@ -9,17 +9,21 @@ Notice that these implementations is correct *if and only if m,n,k(the matrix si
 Here is an outline of the main files and directories:
 ```ccs
 .
-├── CMakeLists.txt
-├── README.md
+├── assets
+│   ├── gemm_performance_4c_avx2.png
+│   ├── gemm_performance_8c_avx512.png
+│   └── timing.py
 ├── benchmark.cpp
+├── CMakeLists.txt
 ├── gemm_numpy.py
 ├── include
 │   ├── argparse
 │   │   └── argparse.hpp
 │   ├── fmt
-│   │   └── ....h  // not import for this project
+│   │   └── xxx.h  // not important for this repo  
 │   ├── matrix.hpp
 │   └── simd_wrapper.h
+├── README.md
 └── src
     ├── gemm_final.cpp
     ├── gemm_loopreorder.cpp
@@ -29,13 +33,13 @@ Here is an outline of the main files and directories:
     ├── gemm_tiling.cpp
     └── gemm_unrolling.cpp
 
-4 directories, 28 files
+5 directories, 31 files
 ```
 
 ## Build
 
 C++ standard required: C++17
-you may need g++-11 or later for gemm_final which use std::experimental::simd.
+you may need g++-11 or later for gemm_final which use `std::experimental::simd`.
 
 
 ```bash
@@ -54,30 +58,5 @@ if you don't specify version, than it will run all algorithms, the matrix size b
 
 
 ## Result:
-
-environment:
-- Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz
-- 4 core 8 thread
-- avx512
-- Linux LAPTOP-QE4VCO5I 5.15.146.1-microsoft-standard-WSL2 
-
-```css
-Version: all
-Epoches: 1
-Matrix dimension: A: 640 x 12800, B: 12800 x 640
-
-gemm_naive: 29.582 s, GFlops: 0.354
-gemm_unrolling: 17.281 s, GFlops: 0.607
-gemm_loopreorder: 1.137 s, GFlops: 9.225
-gemm_tiling: 0.395 s, GFlops: 26.517
-gemm_simd: 0.247 s, GFlops: 42.536
-gemm_multithreads: 0.077 s, GFlops: 136.884
-gemm_final: 0.097 s, GFlops: 108.088
-```
-
-For larger matrix, the gemm_final version is better than numpy. 
-(10000, 10000) x (10000, 10000)
-```
-gemm_final: 13.005 s, GFlops: 153.790
-gemm_numpy: 16.2833 seconds. GFlops: 122.82
-```
+The following results shows the performance of different versions of GEMM with different matrix size(square matrix). The complex version is more slow when the matrix size is small, as it has more overhead of threading, copying to aligned memory, etc. 
+<img src="./assets/gemm_performance_4c_avx2.png" alt="result 1" width="50%"/><img src="./assets/gemm_performance_8c_avx512.png" alt="result 2" width="50%"/>
